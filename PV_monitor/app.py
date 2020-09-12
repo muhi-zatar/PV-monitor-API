@@ -14,10 +14,22 @@ app = Flask(__name__)
 
 def classifier():
     global classifier_ML, classifier_DL
-    image = request.args.get('path', None)
-    ans = detect.infer(image)
+    voltage = request.args.get('voltage', None)
+    current = request.args.get('current', None)
+    irradiance = request.args.get('irradiance', None)
+    temperature = request.args.get('voltage', None)
+    model = request.args.get('model', None)
+
+    if model == 'ML':
+        ans = classifier_ML.infer()
+    elif model == 'DL':
+        ans = classifier_DL.infer()
+    else:
+        raise ValueError('Undefined Model/ Inferencing type for {}'.format(model))
+
     result = json.dumps({'status': 'SUCCESS',
                          'result': ans})
+
     return (result, 200)
 
 
