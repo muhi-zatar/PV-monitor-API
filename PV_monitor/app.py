@@ -5,8 +5,8 @@ from flask import Flask, request, Response
 #from ML_classifier import MLClassifier
 from DL_classifier import DLClassifier
 import sys
-#sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append('/home/mawdoo3/Muhystuff/research/PV-monitor-API')
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+#sys.path.append('/home/mawdoo3/Muhystuff/research/PV-monitor-API')
 from config import config
 
 app = Flask(__name__)
@@ -45,9 +45,9 @@ def classifier():
 
 if __name__ == '__main__':
     global classifier_ML, classifier_DL
-    #if config['model'] == 'DL':
-    classifier_DL = DLClassifier('models/model.h5')
-    #else:
-    #    classifier_ML = MLCLassifier(config['ML_model_path'])
-    #print('Model Loaded')
+    if config['model'] == 'DL':
+        classifier_DL = DLClassifier(config['DL_model_path'])
+    else:
+        classifier_ML = MLCLassifier(config['ML_model_path'])
+    print('Model Loaded')
     app.run(debug=True)

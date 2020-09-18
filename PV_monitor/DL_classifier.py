@@ -14,8 +14,7 @@ class DLClassifier(object):
     def __init__(self, model_path):
         self.session = tf.Session()
         keras.backend.set_session(self.session)
-#        self.data = config['data']
-        self.data = 'data/Data.xlsx'
+        self.data = config['data']
         self.normalization = normalize(data=self.data,
                                        mode='train',
                                        model=None)
