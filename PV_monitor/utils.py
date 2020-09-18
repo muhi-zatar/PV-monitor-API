@@ -1,10 +1,9 @@
-import numpy as np
-from PIL import Image
+import pandas as pd
+from sklearn import preprocessing
 
-def load_cell_image(fname):
-    with Image.open(fname) as image:
-        return np.asarray(image, dtype='float32')
-
-
-def normalize(image):
-    return image/255.0
+def normailze(data, mode, model=None):
+    if mode == 'train':
+        scaler = preprocessing.StandardScaler().fit(data)
+        return scaler
+    else:
+        return model.transform(data)
