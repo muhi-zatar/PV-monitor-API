@@ -3,7 +3,7 @@ import keras
 import tensorflow as tf
 import numpy as np
 from keras.models import load_model
-from utils import load_cell_image, normalize
+from PV_monitor.utils import normalize
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import config

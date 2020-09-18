@@ -1,9 +1,10 @@
 import pandas as pd
 from sklearn import preprocessing
 
-def normailze(data, mode, model=None):
+def normalize(data, mode, model=None):
     if mode == 'train':
-        scaler = preprocessing.StandardScaler().fit(data)
+        x = pd.read_excel(data, 'inputs')
+        scaler = preprocessing.StandardScaler().fit(x)
         return scaler
     else:
-        return model.transform(data)
+        return model.transform([data])
